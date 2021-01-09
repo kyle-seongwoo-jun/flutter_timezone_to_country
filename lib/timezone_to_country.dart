@@ -1,7 +1,7 @@
 library timezone_to_country;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+part 'timezone_to_country.g.dart';
+
+class TimeZoneToCountry {
+  static String countryCode(String timezoneId) => _lookup(timezoneId);
 }
