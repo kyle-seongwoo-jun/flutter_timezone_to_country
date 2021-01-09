@@ -4,10 +4,10 @@ import 'package:timezone_to_country/timezone_to_country.dart';
 
 void main() {
   test('translates timezone id to country code', () {
-    expect(TimeZoneToCountry.countryCode('Asia/Seoul'), 'KR');
-    expect(TimeZoneToCountry.countryCode('America/Los_Angeles'), 'US');
-    expect(TimeZoneToCountry.countryCode('Europe/London'), 'GB');
-    expect(TimeZoneToCountry.countryCode('Wrong/Time_Zone'), null);
-    expect(TimeZoneToCountry.countryCode(null), null);
+    expect(TimeZoneToCountry.getCountryCode('Asia/Seoul'), 'KR');
+    expect(TimeZoneToCountry.getCountryCode('America/Los_Angeles'), 'US');
+    expect(TimeZoneToCountry.getCountryCode('Europe/London'), 'GB');
+    expect(TimeZoneToCountry.getCountryCode('Wrong/Time_Zone'), null);
+    expect(TimeZoneToCountry.getCountryCode(null), null);
   });
 }
