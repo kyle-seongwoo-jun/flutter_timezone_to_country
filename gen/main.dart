@@ -24,7 +24,7 @@ void main() async {
   sb.writeln('');
   sb.writeln('const _map = ${convert.jsonEncode(map)};');
   sb.writeln('');
-  sb.writeln('String _lookup(String timezoneId) => _map[timezoneId];');
+  sb.writeln('String? _lookup(String timezoneId) => _map[timezoneId];');
   sb.writeln('');
 
   final sourcePath = '../lib/timezone_to_country.g.dart';

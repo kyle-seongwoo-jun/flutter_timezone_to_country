@@ -427,4 +427,4 @@ const _map = {
   "Africa/Harare": "ZW"
 };
 
-String _lookup(String timezoneId) => _map[timezoneId];
+String? _lookup(String timezoneId) => _map[timezoneId];

@@ -6,14 +6,33 @@ import 'package:timezone/timezone.dart';
 part 'timezone_to_country.g.dart';
 
 class TimeZoneToCountry {
-  static String getCountryCode(String timezoneId) => _lookup(timezoneId);
+  static String getCountryCode(String timezoneId, {String Function()? onNotFound}) {
+    final code = _lookup(timezoneId);
+    if (code != null) return code;
 
-  static Future<String> getLocalCountryCode() async {
+    // on not found
+    if (onNotFound != null) return onNotFound();
+    throw CountryNotFoundException(timezoneId);
+  }
+
+  static Future<String> getLocalCountryCode({String Function()? onNotFound}) async {
     final local = await FlutterNativeTimezone.getLocalTimezone();
-    return _lookup(local);
+    return getCountryCode(local, onNotFound: onNotFound);
   }
 }
 
 extension CountryCodeExtension on Location {
-  String get countryCode => _lookup(this.name);
+  String get countryCode => TimeZoneToCountry.getCountryCode(this.name);
+
+  String getCountryCode({String Function()? onNotFound}) =>
+      TimeZoneToCountry.getCountryCode(this.name, onNotFound: onNotFound);
+}
+
+class CountryNotFoundException implements Exception {
+  final String timezoneId;
+
+  CountryNotFoundException(this.timezoneId);
+
+  @override
+  String toString() => 'CountryNotFoundException: timezoneId: $timezoneId';
 }
