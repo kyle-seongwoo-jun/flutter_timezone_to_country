@@ -47,5 +47,12 @@ void main() {
           .where((location) => location.value.getCountryCode(onNotFound: () => NOT_FOUND) == NOT_FOUND)
           .forEach((location) => print(location.key));
     });
+
+    test('translates country code to emoji', () {
+      String countryCode = 'KR';
+      String flag = countryCode.replaceAllMapped(
+          RegExp(r'[A-Z]'), (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397));
+      expect(flag, '🇰🇷');
+    });
   });
 }

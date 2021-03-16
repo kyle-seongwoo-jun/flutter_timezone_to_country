@@ -40,12 +40,18 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Local country code: $_countryCode',
+                  'Local country code: ${convertToEmoji(_countryCode)}',
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ],
             ),
           )),
     );
+  }
+
+  static String convertToEmoji(String countryCode) {
+    String flag = countryCode.replaceAllMapped(
+        RegExp(r'[A-Z]'), (match) => String.fromCharCode(match.group(0).codeUnitAt(0) + 127397));
+    return flag;
   }
 }
