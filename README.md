@@ -2,7 +2,7 @@
 
 Extension method for translation Time Zone Id to ISO 3166-1 alpha-2 code (e.g. 'Asia/Seoul' to 'KR')
 
-![example](images/example.png)
+![example](https://raw.githubusercontent.com/kyle-seongwoo-jun/flutter_timezone_to_country/master/images/example.png)
 
 ## Usage
 
