@@ -23,6 +23,10 @@ jobs:
       - name: Get Flutter dependencies
         run: flutter pub get
 
+      - name: Get Flutter dependencies on gen
+        run: flutter pub get
+        working-directory: gen
+
       - name: Check for any formatting issues in the code
         run: flutter format --set-exit-if-changed .
 
