@@ -6,7 +6,10 @@ import 'package:timezone/timezone.dart';
 part 'timezone_to_country.g.dart';
 
 class TimeZoneToCountry {
-  static String getCountryCode(String timezoneId, {String Function()? onNotFound}) {
+  static String getCountryCode(
+    String timezoneId, {
+    String Function()? onNotFound,
+  }) {
     final code = _lookup(timezoneId);
     if (code != null) return code;
 
@@ -15,7 +18,9 @@ class TimeZoneToCountry {
     throw CountryNotFoundException(timezoneId);
   }
 
-  static Future<String> getLocalCountryCode({String Function()? onNotFound}) async {
+  static Future<String> getLocalCountryCode({
+    String Function()? onNotFound,
+  }) async {
     final local = await FlutterNativeTimezone.getLocalTimezone();
     return getCountryCode(local, onNotFound: onNotFound);
   }

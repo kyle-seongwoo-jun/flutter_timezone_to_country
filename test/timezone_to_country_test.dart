@@ -6,7 +6,8 @@ import 'package:timezone/data/latest.dart' as tz;
 
 void main() {
   const String NOT_FOUND = 'NOT_FOUND';
-  final Matcher throwsCountryNotFoundException = throwsA(isA<CountryNotFoundException>());
+  final Matcher throwsCountryNotFoundException =
+      throwsA(isA<CountryNotFoundException>());
 
   group('TimeZoneToCountry', () {
     test('translates timezone id to country code', () {
@@ -14,13 +15,23 @@ void main() {
       expect(TimeZoneToCountry.getCountryCode('America/Los_Angeles'), 'US');
       expect(TimeZoneToCountry.getCountryCode('Europe/London'), 'GB');
 
-      expect(() => TimeZoneToCountry.getCountryCode('Wrong/Time_Zone'), throwsCountryNotFoundException);
-      expect(() => TimeZoneToCountry.getCountryCode('GMT'), throwsCountryNotFoundException);
-      expect(() => TimeZoneToCountry.getCountryCode('UTC'), throwsCountryNotFoundException);
+      expect(() => TimeZoneToCountry.getCountryCode('Wrong/Time_Zone'),
+          throwsCountryNotFoundException);
+      expect(() => TimeZoneToCountry.getCountryCode('GMT'),
+          throwsCountryNotFoundException);
+      expect(() => TimeZoneToCountry.getCountryCode('UTC'),
+          throwsCountryNotFoundException);
 
-      expect(TimeZoneToCountry.getCountryCode('Wrong/Time_Zone', onNotFound: () => NOT_FOUND), NOT_FOUND);
-      expect(TimeZoneToCountry.getCountryCode('GMT', onNotFound: () => NOT_FOUND), NOT_FOUND);
-      expect(TimeZoneToCountry.getCountryCode('UTC', onNotFound: () => NOT_FOUND), NOT_FOUND);
+      expect(
+          TimeZoneToCountry.getCountryCode('Wrong/Time_Zone',
+              onNotFound: () => NOT_FOUND),
+          NOT_FOUND);
+      expect(
+          TimeZoneToCountry.getCountryCode('GMT', onNotFound: () => NOT_FOUND),
+          NOT_FOUND);
+      expect(
+          TimeZoneToCountry.getCountryCode('UTC', onNotFound: () => NOT_FOUND),
+          NOT_FOUND);
     });
 
     test('gets country code from [Location]', () async {
@@ -30,13 +41,28 @@ void main() {
       expect(tz.getLocation('America/Los_Angeles').countryCode, 'US');
       expect(tz.getLocation('Europe/London').countryCode, 'GB');
 
-      expect(() => tz.getLocation('US/Central').countryCode, throwsCountryNotFoundException);
-      expect(() => tz.getLocation('US/Eastern').countryCode, throwsCountryNotFoundException);
-      expect(() => tz.getLocation('US/Pacific').countryCode, throwsCountryNotFoundException);
+      expect(() => tz.getLocation('US/Central').countryCode,
+          throwsCountryNotFoundException);
+      expect(() => tz.getLocation('US/Eastern').countryCode,
+          throwsCountryNotFoundException);
+      expect(() => tz.getLocation('US/Pacific').countryCode,
+          throwsCountryNotFoundException);
 
-      expect(tz.getLocation('US/Central').getCountryCode(onNotFound: () => NOT_FOUND), NOT_FOUND);
-      expect(tz.getLocation('US/Eastern').getCountryCode(onNotFound: () => NOT_FOUND), NOT_FOUND);
-      expect(tz.getLocation('US/Pacific').getCountryCode(onNotFound: () => NOT_FOUND), NOT_FOUND);
+      expect(
+          tz
+              .getLocation('US/Central')
+              .getCountryCode(onNotFound: () => NOT_FOUND),
+          NOT_FOUND);
+      expect(
+          tz
+              .getLocation('US/Eastern')
+              .getCountryCode(onNotFound: () => NOT_FOUND),
+          NOT_FOUND);
+      expect(
+          tz
+              .getLocation('US/Pacific')
+              .getCountryCode(onNotFound: () => NOT_FOUND),
+          NOT_FOUND);
     });
   });
 
@@ -44,14 +70,18 @@ void main() {
     test('Unsupported [Location]', () async {
       tz.initializeTimeZones();
       tz.timeZoneDatabase.locations.entries
-          .where((location) => location.value.getCountryCode(onNotFound: () => NOT_FOUND) == NOT_FOUND)
+          .where((location) =>
+              location.value.getCountryCode(onNotFound: () => NOT_FOUND) ==
+              NOT_FOUND)
           .forEach((location) => print(location.key));
     });
 
     test('translates country code to emoji', () {
       String countryCode = 'KR';
       String flag = countryCode.replaceAllMapped(
-          RegExp(r'[A-Z]'), (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397));
+          RegExp(r'[A-Z]'),
+          (match) =>
+              String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397));
       expect(flag, '🇰🇷');
     });
   });
