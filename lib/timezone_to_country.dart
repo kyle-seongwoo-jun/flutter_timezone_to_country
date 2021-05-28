@@ -6,6 +6,9 @@ import 'package:timezone/timezone.dart';
 part 'timezone_to_country.g.dart';
 
 class TimeZoneToCountry {
+  /// Gets country code from TimezoneId.
+  ///
+  /// Throws an [CountryNotFoundException] if the country code could not found and [onNotFound] is `null`.
   static String getCountryCode(
     String timezoneId, {
     String Function()? onNotFound,
@@ -18,6 +21,9 @@ class TimeZoneToCountry {
     throw CountryNotFoundException(timezoneId);
   }
 
+  /// Get county code from local timezone.
+  ///
+  /// Throws an [CountryNotFoundException] if the country code could not found and [onNotFound] is `null`.
   static Future<String> getLocalCountryCode({
     String Function()? onNotFound,
   }) async {
@@ -27,8 +33,14 @@ class TimeZoneToCountry {
 }
 
 extension CountryCodeExtension on Location {
+  /// Gets country code from [Location.name].
+  ///
+  /// Throws an [CountryNotFoundException] if the country code could not found.
   String get countryCode => TimeZoneToCountry.getCountryCode(this.name);
 
+  /// Gets country code from [Location.name].
+  ///
+  /// Throws an [CountryNotFoundException] if the country code could not found and [onNotFound] is `null`.
   String getCountryCode({String Function()? onNotFound}) =>
       TimeZoneToCountry.getCountryCode(this.name, onNotFound: onNotFound);
 }
