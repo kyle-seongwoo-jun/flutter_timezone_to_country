@@ -1,6 +1,6 @@
 # timezone_to_country
 
-Extension method for translation Time Zone Id to ISO 3166-1 alpha-2 code (e.g. 'Asia/Seoul' to 'KR')
+Library for translation Time Zone Id to ISO 3166-1 alpha-2 code (e.g. 'Asia/Seoul' to 'KR')
 
 ![example](https://raw.githubusercontent.com/kyle-seongwoo-jun/flutter_timezone_to_country/master/images/example.png)
 
@@ -18,15 +18,14 @@ print(code);  // 'KR'
 ```
 
 ## Source of Time Zone
-https://github.com/eggert/tz/blob/master/zone.tab
+IANA - Time Zone Database - 2020d (https://github.com/eggert/tz/blob/2020d/zone.tab)
 
-## Unsupported Time Zones
+## Unsupported Time Zones on [timezone package](https://pub.dev/packages/timezone)
 ```
 America/Godthab
 America/Montreal
 America/Santa_Isabel
 Asia/Rangoon
-Australia/Currie
 Canada/Atlantic
 Canada/Central
 Canada/Eastern

@@ -1,3 +1,4 @@
+/// Library for translation Time Zone Id to ISO 3166-1 alpha-2 code (e.g. 'Asia/Seoul' to 'KR')
 library timezone_to_country;
 
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
