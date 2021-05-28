@@ -1,3 +1,7 @@
+## [0.3.0] - May 28, 2021
+
+* Supports Web.
+
 ## [0.2.0] - March 16, 2021
 
 * Supports Null-safety.
