@@ -1,6 +1,6 @@
 name: timezone_to_country
 description: Extension method for translation Time Zone Id to ISO 3166-1 alpha-2 code (e.g. 'Asia/Seoul' to 'KR')
-version: 0.3.0
+version: 0.4.0
 homepage: https://github.com/kyle-seongwoo-jun/flutter_timezone_to_country
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   timezone: ^0.7.0
-  flutter_native_timezone: ^1.1.0
+  flutter_native_timezone: ^2.0.0
 
 dev_dependencies:
   flutter_test:
