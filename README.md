@@ -1,5 +1,7 @@
 # timezone_to_country
 
+[![pub package](https://img.shields.io/pub/v/timezone_to_country.svg)](https://pub.dev/packages/timezone_to_country)
+
 Library for translation Time Zone Id to ISO 3166-1 alpha-2 code (e.g. 'Asia/Seoul' to 'KR')
 
 ![example](https://raw.githubusercontent.com/kyle-seongwoo-jun/flutter_timezone_to_country/master/images/example.png)
