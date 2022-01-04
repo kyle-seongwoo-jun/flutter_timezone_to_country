@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:timezone_to_country/timezone_to_country.dart';
-import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone_to_country/timezone_to_country.dart';
 
 void main() {
   const String NOT_FOUND = 'NOT_FOUND';
+  const String WRONG_TIMEZONE = 'Wrong/Time_Zone';
   final Matcher throwsCountryNotFoundException =
       throwsA(isA<CountryNotFoundException>());
 
@@ -15,7 +15,7 @@ void main() {
       expect(TimeZoneToCountry.getCountryCode('America/Los_Angeles'), 'US');
       expect(TimeZoneToCountry.getCountryCode('Europe/London'), 'GB');
 
-      expect(() => TimeZoneToCountry.getCountryCode('Wrong/Time_Zone'),
+      expect(() => TimeZoneToCountry.getCountryCode(WRONG_TIMEZONE),
           throwsCountryNotFoundException);
       expect(() => TimeZoneToCountry.getCountryCode('GMT'),
           throwsCountryNotFoundException);
@@ -23,7 +23,7 @@ void main() {
           throwsCountryNotFoundException);
 
       expect(
-          TimeZoneToCountry.getCountryCode('Wrong/Time_Zone',
+          TimeZoneToCountry.getCountryCode(WRONG_TIMEZONE,
               onNotFound: () => NOT_FOUND),
           NOT_FOUND);
       expect(
@@ -40,40 +40,17 @@ void main() {
       expect(tz.getLocation('Asia/Seoul').countryCode, 'KR');
       expect(tz.getLocation('America/Los_Angeles').countryCode, 'US');
       expect(tz.getLocation('Europe/London').countryCode, 'GB');
-
-      expect(() => tz.getLocation('US/Central').countryCode,
-          throwsCountryNotFoundException);
-      expect(() => tz.getLocation('US/Eastern').countryCode,
-          throwsCountryNotFoundException);
-      expect(() => tz.getLocation('US/Pacific').countryCode,
-          throwsCountryNotFoundException);
-
-      expect(
-          tz
-              .getLocation('US/Central')
-              .getCountryCode(onNotFound: () => NOT_FOUND),
-          NOT_FOUND);
-      expect(
-          tz
-              .getLocation('US/Eastern')
-              .getCountryCode(onNotFound: () => NOT_FOUND),
-          NOT_FOUND);
-      expect(
-          tz
-              .getLocation('US/Pacific')
-              .getCountryCode(onNotFound: () => NOT_FOUND),
-          NOT_FOUND);
     });
   });
 
   group('to check', () {
     test('Unsupported [Location]', () async {
       tz.initializeTimeZones();
-      tz.timeZoneDatabase.locations.entries
+      final unsupported = tz.timeZoneDatabase.locations.values
           .where((location) =>
-              location.value.getCountryCode(onNotFound: () => NOT_FOUND) ==
-              NOT_FOUND)
-          .forEach((location) => print(location.key));
+              location.getCountryCode(onNotFound: () => NOT_FOUND) == NOT_FOUND)
+          .toList();
+      expect(unsupported, isEmpty);
     });
 
     test('translates country code to emoji', () {

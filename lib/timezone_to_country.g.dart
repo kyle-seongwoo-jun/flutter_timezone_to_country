@@ -426,5 +426,3 @@ const _map = {
   "Africa/Lusaka": "ZM",
   "Africa/Harare": "ZW"
 };
-
-String? _lookup(String timezoneId) => _map[timezoneId];

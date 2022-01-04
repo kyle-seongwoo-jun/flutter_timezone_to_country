@@ -21,26 +21,3 @@ print(code);  // 'KR'
 
 ## Source of Time Zone
 IANA - Time Zone Database - 2021a (https://github.com/eggert/tz/blob/2021a/zone.tab)
-
-## Unsupported Time Zones on [timezone package](https://pub.dev/packages/timezone)
-```
-America/Godthab
-America/Montreal
-America/Santa_Isabel
-Asia/Rangoon
-Australia/Currie
-Canada/Atlantic
-Canada/Central
-Canada/Eastern
-Canada/Mountain
-Canada/Newfoundland
-Canada/Pacific
-Pacific/Johnston
-US/Alaska
-US/Arizona
-US/Central
-US/Eastern
-US/Hawaii
-US/Mountain
-US/Pacific
-```

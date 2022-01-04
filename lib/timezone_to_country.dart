@@ -5,6 +5,9 @@ import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:timezone/timezone.dart';
 
 part 'timezone_to_country.g.dart';
+part 'timezone_to_country.manual.g.dart';
+
+String? _lookup(String timezoneId) => _map[timezoneId] ?? _map2[timezoneId];
 
 class TimeZoneToCountry {
   /// Gets country code from TimezoneId.
