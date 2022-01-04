@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
+const String _version = '2021a';
+
 void main() async {
   /// download the timezone file
-  final url = 'https://raw.githubusercontent.com/eggert/tz/2020d/zone.tab';
+  final url = 'https://raw.githubusercontent.com/eggert/tz/$_version/zone.tab';
   final response = await http.get(url);
   if (response.statusCode != 200) {
     print('Request failed with status: ${response.statusCode}.');
