@@ -1,3 +1,8 @@
+## [0.5.0] - January 4, 2022
+
+* Set IANA time zone version to 2021a.
+* Supports all of timezones on [timezone](https://pub.dev/packages/timezone) package.
+
 ## [0.4.0] - June 11, 2021
 
 * Set IANA time zone version to 2020d.
