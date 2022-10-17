@@ -12,6 +12,8 @@ const _map2 = {
   "Canada/Mountain": "CA",
   "Canada/Newfoundland": "CA",
   "Canada/Pacific": "CA",
+  "Europe/Kiev": "UA",
+  "Pacific/Enderbury": "KI",
   "Pacific/Johnston": "US",
   "US/Alaska": "US",
   "US/Arizona": "US",

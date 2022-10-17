@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-const String _version = '2021a';
+const String _version = '2022c';
 
 void main() async {
   final timezones = await loadTimezones(_version);
@@ -22,7 +22,8 @@ void main() async {
 /// load timezones and parse
 Future<Map<String, String>> loadTimezones(String version) async {
   /// download the timezone file
-  final url = 'https://raw.githubusercontent.com/eggert/tz/$_version/zone.tab';
+  final url = Uri.parse(
+      'https://raw.githubusercontent.com/eggert/tz/$version/zone.tab');
   final response = await http.get(url);
   if (response.statusCode != 200) {
     print('Request failed with status: ${response.statusCode}.');
@@ -42,7 +43,8 @@ Future<Map<String, String>> loadTimezones(String version) async {
 /// finds unsupported timezones from timezone package
 /// and guess their country code
 Map<String, String> unsupportedTimezones(Map<String, String> timezones) {
-  String guess(String timezoneId) {
+  String? guess(String timezoneId) {
+    if (timezoneId == 'GMT' || timezoneId == 'UTC') return null;
     if (timezoneId.startsWith('US/')) return 'US';
     if (timezoneId.startsWith('Canada/')) return 'CA';
     if (timezoneId.startsWith('Australia/')) return 'AU';
@@ -52,19 +54,23 @@ Map<String, String> unsupportedTimezones(Map<String, String> timezones) {
       'America/Montreal': 'CA',
       'America/Santa_Isabel': 'MX',
       'Asia/Rangoon': 'MM',
+      'Europe/Kiev': 'UA',
+      'Pacific/Enderbury': 'KI',
       'Pacific/Johnston': 'US',
     }[timezoneId];
 
-    assert(code != null, 'You should implement this.');
+    assert(code != null, 'You should implement: $timezoneId.');
     return code;
   }
 
   tz.initializeTimeZones();
-  final unsupported = Map.fromEntries(
-    tz.timeZoneDatabase.locations.keys
-        .where((timezoneId) => timezones[timezoneId] == null)
-        .map((timezoneId) => MapEntry(timezoneId, guess(timezoneId))),
-  );
+  final unsupported = Map.fromEntries(() sync* {
+    for (final timezoneId in tz.timeZoneDatabase.locations.keys
+        .where((timezoneId) => timezones[timezoneId] == null)) {
+      final code = guess(timezoneId);
+      if (code != null) yield MapEntry(timezoneId, code);
+    }
+  }());
   return unsupported;
 }
 

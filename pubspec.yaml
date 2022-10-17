@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  timezone: ^0.8.0
+  timezone: ^0.9.0
   flutter_native_timezone: ^2.0.0
 
 dev_dependencies:

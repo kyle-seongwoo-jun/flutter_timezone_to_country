@@ -47,6 +47,7 @@ void main() {
     test('Unsupported [Location]', () async {
       tz.initializeTimeZones();
       final unsupported = tz.timeZoneDatabase.locations.values
+          .where((location) => location.name != 'GMT' && location.name != 'UTC')
           .where((location) =>
               location.getCountryCode(onNotFound: () => NOT_FOUND) == NOT_FOUND)
           .toList();
