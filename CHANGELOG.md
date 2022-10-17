@@ -1,3 +1,7 @@
+## [1.0.0] - October 17, 2022
+
+* Set IANA time zone version to 2022c.
+
 ## [0.5.0] - January 4, 2022
 
 * Set IANA time zone version to 2021a.
