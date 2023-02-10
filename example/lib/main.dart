@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
               children: <Widget>[
                 Text(
                   'Local country code: ${convertToEmoji(_countryCode)}',
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
             ),
