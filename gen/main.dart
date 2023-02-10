@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-const String _version = '2022c';
+const String _version = '2022g';
 
 void main() async {
   final timezones = await loadTimezones(_version);
@@ -52,9 +52,15 @@ Map<String, String> unsupportedTimezones(Map<String, String> timezones) {
     final code = {
       'America/Godthab': 'GL',
       'America/Montreal': 'CA',
+      'America/Nipigon': 'CA',
+      'America/Pangnirtung': 'CA',
+      'America/Rainy_River': 'CA',
       'America/Santa_Isabel': 'MX',
+      'America/Thunder_Bay': 'CA',
       'Asia/Rangoon': 'MM',
       'Europe/Kiev': 'UA',
+      'Europe/Uzhgorod': 'UA',
+      'Europe/Zaporozhye': 'UA',
       'Pacific/Enderbury': 'KI',
       'Pacific/Johnston': 'US',
     }[timezoneId];
