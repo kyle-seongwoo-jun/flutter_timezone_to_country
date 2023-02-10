@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
 
   static String convertToEmoji(String countryCode) {
     String flag = countryCode.replaceAllMapped(RegExp(r'[A-Z]'),
-        (match) => String.fromCharCode(match.group(0).codeUnitAt(0) + 127397));
+        (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397));
     return flag;
   }
 }
