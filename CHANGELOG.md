@@ -1,3 +1,9 @@
+# 2.0.0
+
+* Set IANA time zone version to 2022g.
+* Replace `flutter_native_timezone` package with `flutter_timezone` package.
+* Add `getCountryCodeOrNull()`, `getLocalCountryCodeOrNull()` and `countryCodeOrNull`.
+
 # 1.0.0
 
 * Set IANA time zone version to 2022c.
