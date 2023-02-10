@@ -32,6 +32,10 @@ void main() {
       expect(
           TimeZoneToCountry.getCountryCode('UTC', onNotFound: () => NOT_FOUND),
           NOT_FOUND);
+
+      expect(TimeZoneToCountry.getCountryCodeOrNull(WRONG_TIMEZONE), null);
+      expect(TimeZoneToCountry.getCountryCodeOrNull('GMT'), null);
+      expect(TimeZoneToCountry.getCountryCodeOrNull('UTC'), null);
     });
 
     test('gets country code from [Location]', () async {
@@ -48,8 +52,7 @@ void main() {
       tz.initializeTimeZones();
       final unsupported = tz.timeZoneDatabase.locations.values
           .where((location) => location.name != 'GMT' && location.name != 'UTC')
-          .where((location) =>
-              location.getCountryCode(onNotFound: () => NOT_FOUND) == NOT_FOUND)
+          .where((location) => location.countryCodeOrNull == null) // not found
           .toList();
       expect(unsupported, isEmpty);
     });

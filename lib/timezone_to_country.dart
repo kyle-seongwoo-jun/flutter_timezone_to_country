@@ -25,6 +25,13 @@ class TimeZoneToCountry {
     throw CountryNotFoundException(timezoneId);
   }
 
+  /// Gets country code from TimezoneId.
+  ///
+  /// Returns `null` if the country code could not found.
+  static String? getCountryCodeOrNull(String timezoneId) {
+    return _lookup(timezoneId);
+  }
+
   /// Get county code from local timezone.
   ///
   /// Throws an [CountryNotFoundException] if the country code could not found and [onNotFound] is `null`.
@@ -34,6 +41,14 @@ class TimeZoneToCountry {
     final local = await FlutterTimezone.getLocalTimezone();
     return getCountryCode(local, onNotFound: onNotFound);
   }
+
+  /// Get county code from local timezone.
+  ///
+  /// Returns `null` if the country code could not found.
+  static Future<String?> getLocalCountryCodeOrNull() async {
+    final local = await FlutterTimezone.getLocalTimezone();
+    return getCountryCodeOrNull(local);
+  }
 }
 
 extension CountryCodeExtension on Location {
@@ -41,6 +56,12 @@ extension CountryCodeExtension on Location {
   ///
   /// Throws an [CountryNotFoundException] if the country code could not found.
   String get countryCode => TimeZoneToCountry.getCountryCode(this.name);
+
+  /// Gets country code from [Location.name].
+  ///
+  /// Returns `null` if the country code could not found.
+  String? get countryCodeOrNull =>
+      TimeZoneToCountry.getCountryCodeOrNull(this.name);
 
   /// Gets country code from [Location.name].
   ///
