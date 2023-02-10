@@ -1,7 +1,7 @@
 /// Library for translation Time Zone Id to ISO 3166-1 alpha-2 code (e.g. 'Asia/Seoul' to 'KR')
 library timezone_to_country;
 
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/timezone.dart';
 
 part 'timezone_to_country.g.dart';
@@ -31,7 +31,7 @@ class TimeZoneToCountry {
   static Future<String> getLocalCountryCode({
     String Function()? onNotFound,
   }) async {
-    final local = await FlutterNativeTimezone.getLocalTimezone();
+    final local = await FlutterTimezone.getLocalTimezone();
     return getCountryCode(local, onNotFound: onNotFound);
   }
 }
