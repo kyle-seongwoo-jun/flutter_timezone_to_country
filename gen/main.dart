@@ -91,13 +91,10 @@ Future<void> generateSourceFile(
   sb.writeln('');
 
   final sourcePath = '../lib/$fileName';
-  File(sourcePath)
-    ..writeAsStringSync(
-      sb.toString(),
-    );
+  await File(sourcePath).writeAsString(sb.toString());
 
   /// format file
-  await Process.run('flutter', ['format', sourcePath]);
+  await Process.run('dart', ['format', sourcePath]);
 
   print('$fileName is updated.');
 }
