@@ -99,7 +99,6 @@ const _map = {
   "America/Swift_Current": "CA",
   "America/Edmonton": "CA",
   "America/Cambridge_Bay": "CA",
-  "America/Yellowknife": "CA",
   "America/Inuvik": "CA",
   "America/Creston": "CA",
   "America/Dawson_Creek": "CA",
