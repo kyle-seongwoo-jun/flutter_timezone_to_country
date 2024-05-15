@@ -1,3 +1,7 @@
+# 2.2.0
+
+* Set IANA time zone version to 2024a.
+
 # 2.1.0
 
 * Set IANA time zone version to 2023c.
