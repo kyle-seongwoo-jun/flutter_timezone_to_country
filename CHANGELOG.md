@@ -1,3 +1,8 @@
+# 2.2.1
+
+* update README
+* update dependencies
+
 # 2.2.0
 
 * Set IANA time zone version to 2024a.
