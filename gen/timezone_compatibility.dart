@@ -36,6 +36,7 @@ String? _guessCountryCodeFrom(String timezoneId) {
     'America/Santa_Isabel': 'MX',
     'America/Thunder_Bay': 'CA',
     'America/Yellowknife': 'CA',
+    'Asia/Choibalsan': 'MN',
     'Asia/Rangoon': 'MM',
     'Europe/Uzhgorod': 'UA',
     'Europe/Zaporozhye': 'UA',

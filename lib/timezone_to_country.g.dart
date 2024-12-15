@@ -241,7 +241,6 @@ const _map = {
   "Asia/Yangon": "MM",
   "Asia/Ulaanbaatar": "MN",
   "Asia/Hovd": "MN",
-  "Asia/Choibalsan": "MN",
   "Asia/Macau": "MO",
   "Pacific/Saipan": "MP",
   "America/Martinique": "MQ",
