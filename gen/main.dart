@@ -2,25 +2,29 @@ import 'dart:convert' as convert;
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 
-const String _version = '2024a';
+import 'timezone_compatibility.dart';
+
+const String TIMEZONE_DATABASE_VERSION = '2024a';
 
 void main() async {
-  final timezones = await loadTimezones(_version);
+  final timezones = await loadTimezonesWithCountryCodes(
+    TIMEZONE_DATABASE_VERSION,
+  );
   if (timezones.isEmpty) return;
 
   generateSourceFile('timezone_to_country.g.dart', '_map', timezones);
 
-  final unsupported = unsupportedTimezones(timezones);
-  if (timezones.isEmpty) return;
+  final unsupported = findUnmappedTimezonesWithCountryCodes(timezones);
+  if (unsupported.isEmpty) return;
 
   generateSourceFile('timezone_to_country.manual.g.dart', '_map2', unsupported);
 }
 
-/// load timezones and parse
-Future<Map<String, String>> loadTimezones(String version) async {
+/// load timezones with their country code from tz database
+Future<Map<String, String>> loadTimezonesWithCountryCodes(
+  String version,
+) async {
   /// download the timezone file
   final url = Uri.parse(
       'https://raw.githubusercontent.com/eggert/tz/$version/zone.tab');
@@ -40,48 +44,11 @@ Future<Map<String, String>> loadTimezones(String version) async {
   return map;
 }
 
-/// finds unsupported timezones from timezone package
-/// and guess their country code
-Map<String, String> unsupportedTimezones(Map<String, String> timezones) {
-  String? guess(String timezoneId) {
-    if (timezoneId == 'GMT' || timezoneId == 'UTC') return null;
-    if (timezoneId.startsWith('US/')) return 'US';
-    if (timezoneId.startsWith('Canada/')) return 'CA';
-    if (timezoneId.startsWith('Australia/')) return 'AU';
-
-    final code = {
-      'America/Godthab': 'GL',
-      'America/Montreal': 'CA',
-      'America/Nipigon': 'CA',
-      'America/Pangnirtung': 'CA',
-      'America/Rainy_River': 'CA',
-      'America/Santa_Isabel': 'MX',
-      'America/Thunder_Bay': 'CA',
-      'America/Yellowknife': 'CA',
-      'Asia/Rangoon': 'MM',
-      'Europe/Uzhgorod': 'UA',
-      'Europe/Zaporozhye': 'UA',
-      'Pacific/Enderbury': 'KI',
-      'Pacific/Johnston': 'US',
-    }[timezoneId];
-
-    assert(code != null, 'You should implement: $timezoneId.');
-    return code;
-  }
-
-  tz.initializeTimeZones();
-  final unsupported = Map.fromEntries(() sync* {
-    for (final timezoneId in tz.timeZoneDatabase.locations.keys
-        .where((timezoneId) => timezones[timezoneId] == null)) {
-      final code = guess(timezoneId);
-      if (code != null) yield MapEntry(timezoneId, code);
-    }
-  }());
-  return unsupported;
-}
-
 Future<void> generateSourceFile(
-    String fileName, String mapName, Map<String, String> timezones) async {
+  String fileName,
+  String mapName,
+  Map<String, String> timezones,
+) async {
   /// write to source file
   final sb = StringBuffer();
   sb.writeln("part of 'timezone_to_country.dart';");
