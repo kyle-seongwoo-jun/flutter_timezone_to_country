@@ -1,3 +1,7 @@
+# 3.0.0
+
+* feat: set IANA time zone version to 2024b ([#8](https://github.com/kyle-seongwoo-jun/flutter_timezone_to_country/pull/8))
+
 # 2.2.1
 
 * update README
