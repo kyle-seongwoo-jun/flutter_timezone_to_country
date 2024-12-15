@@ -9,6 +9,7 @@ const _map2 = {
   "America/Santa_Isabel": "MX",
   "America/Thunder_Bay": "CA",
   "America/Yellowknife": "CA",
+  "Asia/Choibalsan": "MN",
   "Asia/Rangoon": "MM",
   "Australia/Currie": "AU",
   "Canada/Atlantic": "CA",
