@@ -77,10 +77,10 @@ packages:
     dependency: "direct main"
     description:
       name: timezone
-      sha256: a6ccda4a69a442098b602c44e61a1e2b4bf6f5516e875bbf0f427d5df14745d5
+      sha256: ffc9d5f4d1193534ef051f9254063fa53d588609418c84299956c3db9383587d
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.3"
+    version: "0.10.0"
   typed_data:
     dependency: transitive
     description:
