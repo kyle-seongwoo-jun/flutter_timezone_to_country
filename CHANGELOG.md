@@ -1,3 +1,8 @@
+# 3.1.0
+
+* feat(timezone): set IANA time zone version to 2025b
+* chore(deps): bump flutter_timezone to 5.0.0
+
 # 3.0.0
 
 * feat: set IANA time zone version to 2024b ([#8](https://github.com/kyle-seongwoo-jun/flutter_timezone_to_country/pull/8))
