@@ -39,7 +39,7 @@ class TimeZoneToCountry {
     String Function()? onNotFound,
   }) async {
     final local = await FlutterTimezone.getLocalTimezone();
-    return getCountryCode(local, onNotFound: onNotFound);
+    return getCountryCode(local.identifier, onNotFound: onNotFound);
   }
 
   /// Get county code from local timezone.
@@ -47,7 +47,7 @@ class TimeZoneToCountry {
   /// Returns `null` if the country code could not found.
   static Future<String?> getLocalCountryCodeOrNull() async {
     final local = await FlutterTimezone.getLocalTimezone();
-    return getCountryCodeOrNull(local);
+    return getCountryCodeOrNull(local.identifier);
   }
 }
 
