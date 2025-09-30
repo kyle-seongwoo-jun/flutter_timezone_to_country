@@ -115,6 +115,7 @@ const _map = {
   "Africa/Abidjan": "CI",
   "Pacific/Rarotonga": "CK",
   "America/Santiago": "CL",
+  "America/Coyhaique": "CL",
   "America/Punta_Arenas": "CL",
   "Pacific/Easter": "CL",
   "Africa/Douala": "CM",

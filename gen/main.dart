@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'timezone_compatibility.dart';
 
-const String TIMEZONE_DATABASE_VERSION = '2024b';
+const String TIMEZONE_DATABASE_VERSION = '2025b';
 
 void main() async {
   final timezones = await loadTimezonesWithCountryCodes(

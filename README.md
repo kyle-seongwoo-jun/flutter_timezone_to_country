@@ -24,4 +24,4 @@ print(code);  // 'KR'
 
 ## Source of Time Zone
 
-IANA - Time Zone Database - [2024b](https://github.com/eggert/tz/blob/2024b/zone.tab)
+IANA - Time Zone Database - [2025b](https://github.com/eggert/tz/blob/2025b/zone.tab)
