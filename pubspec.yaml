@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   timezone: ^0.10.0
-  flutter_timezone: ^4.0.0
+  flutter_timezone: ">=4.0.0 <6.0.0"
 
 dev_dependencies:
   flutter_test:
