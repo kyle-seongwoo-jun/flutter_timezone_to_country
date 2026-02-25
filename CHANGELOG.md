@@ -1,3 +1,8 @@
+# 3.2.0
+
+* feat(timezone): set IANA time zone version to 2025c
+* chore(deps): bump timezone to 0.11.0
+
 # 3.1.0
 
 * feat(timezone): set IANA time zone version to 2025b
