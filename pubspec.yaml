@@ -4,13 +4,13 @@ version: 3.1.0
 homepage: https://github.com/kyle-seongwoo-jun/flutter_timezone_to_country
 
 environment:
-  sdk: ">=3.3.0 <4.0.0"
+  sdk: ">=3.10.0 <4.0.0"
   flutter: ">=3.19.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  timezone: ^0.10.1
+  timezone: ^0.11.0
   flutter_timezone: ^5.0.0
 
 dev_dependencies:

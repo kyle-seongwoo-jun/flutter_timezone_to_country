@@ -4,8 +4,8 @@ description: A simple command-line application.
 # homepage: https://www.example.com
 
 environment:
-  sdk: ">=3.3.0 <4.0.0"
+  sdk: ">=3.10.0 <4.0.0"
 
 dependencies:
   http: ^1.5.0
-  timezone: ^0.10.1
+  timezone: ^0.11.0
