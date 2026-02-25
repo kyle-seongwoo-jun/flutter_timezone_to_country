@@ -36,6 +36,11 @@ void main() {
       expect(TimeZoneToCountry.getCountryCodeOrNull(WRONG_TIMEZONE), null);
       expect(TimeZoneToCountry.getCountryCodeOrNull('GMT'), null);
       expect(TimeZoneToCountry.getCountryCodeOrNull('UTC'), null);
+      expect(TimeZoneToCountry.getCountryCodeOrNull('Etc/GMT'), null);
+      expect(TimeZoneToCountry.getCountryCodeOrNull('Etc/GMT+9'), null);
+      expect(TimeZoneToCountry.getCountryCodeOrNull('Etc/GMT-10'), null);
+      expect(TimeZoneToCountry.getCountryCodeOrNull('Etc/UTC'), null);
+      expect(TimeZoneToCountry.getCountryCodeOrNull('Factory'), null);
     });
 
     test('gets country code from [Location]', () async {
@@ -51,7 +56,13 @@ void main() {
     test('Unsupported [Location]', () async {
       tz.initializeTimeZones();
       final unsupported = tz.timeZoneDatabase.locations.values
-          .where((location) => location.name != 'GMT' && location.name != 'UTC')
+          .where(
+            (location) =>
+                location.name != 'GMT' &&
+                location.name != 'UTC' &&
+                location.name != 'Factory' &&
+                !location.name.startsWith('Etc/'),
+          )
           .where((location) => location.countryCodeOrNull == null) // not found
           .toList();
       expect(unsupported, isEmpty);

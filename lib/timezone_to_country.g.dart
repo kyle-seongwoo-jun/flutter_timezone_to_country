@@ -418,5 +418,5 @@ const _map = {
   "Indian/Mayotte": "YT",
   "Africa/Johannesburg": "ZA",
   "Africa/Lusaka": "ZM",
-  "Africa/Harare": "ZW"
+  "Africa/Harare": "ZW",
 };

@@ -22,7 +22,11 @@ Map<String, String> findUnmappedTimezonesWithCountryCodes(
 }
 
 String? _guessCountryCodeFrom(String timezoneId) {
-  if (timezoneId == 'GMT' || timezoneId == 'UTC') return null;
+  if (timezoneId == 'GMT' ||
+      timezoneId == 'UTC' ||
+      timezoneId == 'Factory' ||
+      timezoneId.startsWith('Etc/'))
+    return null;
   if (timezoneId.startsWith('US/')) return 'US';
   if (timezoneId.startsWith('Canada/')) return 'CA';
   if (timezoneId.startsWith('Australia/')) return 'AU';
