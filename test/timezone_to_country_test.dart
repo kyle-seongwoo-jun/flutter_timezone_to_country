@@ -6,8 +6,9 @@ import 'package:timezone_to_country/timezone_to_country.dart';
 void main() {
   const String NOT_FOUND = 'NOT_FOUND';
   const String WRONG_TIMEZONE = 'Wrong/Time_Zone';
-  final Matcher throwsCountryNotFoundException =
-      throwsA(isA<CountryNotFoundException>());
+  final Matcher throwsCountryNotFoundException = throwsA(
+    isA<CountryNotFoundException>(),
+  );
 
   group('TimeZoneToCountry', () {
     test('translates timezone id to country code', () {
@@ -15,23 +16,34 @@ void main() {
       expect(TimeZoneToCountry.getCountryCode('America/Los_Angeles'), 'US');
       expect(TimeZoneToCountry.getCountryCode('Europe/London'), 'GB');
 
-      expect(() => TimeZoneToCountry.getCountryCode(WRONG_TIMEZONE),
-          throwsCountryNotFoundException);
-      expect(() => TimeZoneToCountry.getCountryCode('GMT'),
-          throwsCountryNotFoundException);
-      expect(() => TimeZoneToCountry.getCountryCode('UTC'),
-          throwsCountryNotFoundException);
+      expect(
+        () => TimeZoneToCountry.getCountryCode(WRONG_TIMEZONE),
+        throwsCountryNotFoundException,
+      );
+      expect(
+        () => TimeZoneToCountry.getCountryCode('GMT'),
+        throwsCountryNotFoundException,
+      );
+      expect(
+        () => TimeZoneToCountry.getCountryCode('UTC'),
+        throwsCountryNotFoundException,
+      );
 
       expect(
-          TimeZoneToCountry.getCountryCode(WRONG_TIMEZONE,
-              onNotFound: () => NOT_FOUND),
-          NOT_FOUND);
+        TimeZoneToCountry.getCountryCode(
+          WRONG_TIMEZONE,
+          onNotFound: () => NOT_FOUND,
+        ),
+        NOT_FOUND,
+      );
       expect(
-          TimeZoneToCountry.getCountryCode('GMT', onNotFound: () => NOT_FOUND),
-          NOT_FOUND);
+        TimeZoneToCountry.getCountryCode('GMT', onNotFound: () => NOT_FOUND),
+        NOT_FOUND,
+      );
       expect(
-          TimeZoneToCountry.getCountryCode('UTC', onNotFound: () => NOT_FOUND),
-          NOT_FOUND);
+        TimeZoneToCountry.getCountryCode('UTC', onNotFound: () => NOT_FOUND),
+        NOT_FOUND,
+      );
 
       expect(TimeZoneToCountry.getCountryCodeOrNull(WRONG_TIMEZONE), null);
       expect(TimeZoneToCountry.getCountryCodeOrNull('GMT'), null);
@@ -71,9 +83,9 @@ void main() {
     test('translates country code to emoji', () {
       String countryCode = 'KR';
       String flag = countryCode.replaceAllMapped(
-          RegExp(r'[A-Z]'),
-          (match) =>
-              String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397));
+        RegExp(r'[A-Z]'),
+        (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397),
+      );
       expect(flag, '🇰🇷');
     });
   });

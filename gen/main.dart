@@ -27,7 +27,8 @@ Future<Map<String, String>> loadTimezonesWithCountryCodes(
 ) async {
   /// download the timezone file
   final url = Uri.parse(
-      'https://raw.githubusercontent.com/eggert/tz/$version/zone.tab');
+    'https://raw.githubusercontent.com/eggert/tz/$version/zone.tab',
+  );
   final response = await http.get(url);
   if (response.statusCode != 200) {
     print('Request failed with status: ${response.statusCode}.');
@@ -36,10 +37,12 @@ Future<Map<String, String>> loadTimezonesWithCountryCodes(
 
   // parse timezone
   final lines = response.body.split('\n');
-  final map = Map.fromEntries(lines
-      .where((line) => !line.startsWith('#') && line.isNotEmpty)
-      .map((line) => line.split('\t'))
-      .map((parts) => MapEntry(parts[2], parts[0])));
+  final map = Map.fromEntries(
+    lines
+        .where((line) => !line.startsWith('#') && line.isNotEmpty)
+        .map((line) => line.split('\t'))
+        .map((parts) => MapEntry(parts[2], parts[0])),
+  );
 
   return map;
 }

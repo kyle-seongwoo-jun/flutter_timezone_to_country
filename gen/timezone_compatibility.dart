@@ -10,8 +10,9 @@ Map<String, String> findUnmappedTimezonesWithCountryCodes(
 
   final unmapped = Map.fromEntries(() sync* {
     // iterate through timezones that exist in timezone package but not in the tz database
-    for (final timezoneId in tz.timeZoneDatabase.locations.keys
-        .where((timezoneId) => timezones[timezoneId] == null)) {
+    for (final timezoneId in tz.timeZoneDatabase.locations.keys.where(
+      (timezoneId) => timezones[timezoneId] == null,
+    )) {
       // manually guess the country code for those timezones
       final code = _guessCountryCodeFrom(timezoneId);
       if (code != null) yield MapEntry(timezoneId, code);

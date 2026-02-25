@@ -28,5 +28,5 @@ const _map2 = {
   "US/Eastern": "US",
   "US/Hawaii": "US",
   "US/Mountain": "US",
-  "US/Pacific": "US"
+  "US/Pacific": "US",
 };
